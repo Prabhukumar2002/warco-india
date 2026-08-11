@@ -1,0 +1,1524 @@
+/* =========================================================================
+   WARCO INDIA — design tokens
+   Brand accents (fixed): amber highlight, forest green, scale teal.
+   Semantic surface/text tokens flip between the light and dark themes below.
+   Type: Fraunces (display) + Work Sans (body) + Noto Sans Kannada (ಕನ್ನಡ)
+   ========================================================================= */
+
+:root {
+  /* brand accents — stay recognizable in both themes */
+  --warco-amber: #d98c2b;
+  --warco-forest: #2f5d3a;
+  --warco-teal: #3a6b6b;
+
+  --font-display: "Fraunces", "Noto Sans Kannada", serif;
+  --font-body: "Work Sans", "Noto Sans Kannada", sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 2px 8px rgba(22, 30, 24, 0.06);
+  --shadow-md: 0 10px 28px rgba(22, 30, 24, 0.10);
+}
+
+/* -------------------------------------------------------------------------
+   Light theme (default)
+   ------------------------------------------------------------------------- */
+:root,
+:root[data-theme="light"] {
+  --bg-page: #fffdf8;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #f1e9d8;
+  --bg-inverse: #163826;
+  --bg-inverse-alt: #12301f;
+
+  --text-primary: #22201b;
+  --text-secondary: #55503f;
+  --text-heading: #163826;
+  --text-inverse: #f1e9d8;
+  --text-inverse-secondary: rgba(241, 233, 216, 0.78);
+
+  --border-subtle: rgba(22, 56, 38, 0.12);
+  --border-inverse: rgba(241, 233, 216, 0.16);
+
+  color-scheme: light;
+}
+
+/* -------------------------------------------------------------------------
+   Dark theme
+   ------------------------------------------------------------------------- */
+:root[data-theme="dark"] {
+  --bg-page: #0f1e15;
+  --bg-surface: #16291d;
+  --bg-surface-alt: #1b3223;
+  --bg-inverse: #0a1710;
+  --bg-inverse-alt: #081209;
+
+  --text-primary: #ece6d8;
+  --text-secondary: rgba(236, 230, 216, 0.72);
+  --text-heading: #f4efe2;
+  --text-inverse: #f1e9d8;
+  --text-inverse-secondary: rgba(241, 233, 216, 0.72);
+
+  --border-subtle: rgba(236, 230, 216, 0.14);
+  --border-inverse: rgba(241, 233, 216, 0.14);
+
+  /* brand accents brighten slightly so they hold contrast on dark surfaces */
+  --warco-amber: #e8a24a;
+  --warco-forest: #5a9468;
+  --warco-teal: #63a3a3;
+
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.35);
+
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, .brand-text {
+  font-family: var(--font-display);
+  color: var(--text-heading);
+}
+
+a {
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--warco-amber);
+  color: #fff;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2.5px solid var(--warco-amber);
+  outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------
+   Emergency bar
+   ------------------------------------------------------------------------- */
+.emergency-bar {
+  background: var(--bg-inverse-alt);
+  color: var(--text-inverse);
+  font-size: 0.9rem;
+  padding: 0.55rem 0;
+  text-align: center;
+}
+
+.emergency-phone {
+  color: var(--warco-amber);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.emergency-phone:hover {
+  color: var(--text-inverse);
+}
+
+/* -------------------------------------------------------------------------
+   Navbar
+   ------------------------------------------------------------------------- */
+.warco-navbar {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.brand-mark {
+  color: var(--text-heading);
+  display: inline-flex;
+}
+
+.brand-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #fff;
+  padding: 2px;
+  border: 1px solid var(--border-subtle);
+}
+
+.brand-text {
+  font-weight: 600;
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+}
+
+.warco-navbar .nav-link {
+  color: var(--text-primary);
+  font-weight: 500;
+  padding: 0.5rem 0.85rem;
+  transition: color 0.15s ease;
+}
+
+.warco-navbar .nav-link.active,
+.warco-navbar .nav-link:hover {
+  color: var(--warco-forest);
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.28s ease, opacity 0.2s ease;
+  }
+  .navbar-collapse.show {
+    max-height: 480px;
+    opacity: 1;
+    padding-top: 0.5rem;
+    padding-bottom: 0.75rem;
+  }
+}
+
+.btn-lang,
+.btn-theme-toggle {
+  border: 1.5px solid var(--warco-teal);
+  color: var(--warco-teal);
+  background: transparent;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-lang {
+  padding: 0.35rem 1rem;
+}
+
+.btn-lang:hover,
+.btn-theme-toggle:hover {
+  background: var(--warco-teal);
+  color: #fff;
+}
+
+.btn-theme-toggle {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-warco-cta {
+  background: var(--warco-amber);
+  color: #fff !important;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-warco-cta:hover {
+  background: #c17b21;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-warco-outline {
+  background: transparent;
+  border: 1.5px solid var(--warco-forest);
+  color: var(--warco-forest) !important;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-warco-outline:hover {
+  background: var(--warco-forest);
+  color: #fff !important;
+}
+
+/* -------------------------------------------------------------------------
+   Hero
+   ------------------------------------------------------------------------- */
+.hero-section {
+  background: linear-gradient(180deg, var(--bg-surface-alt) 0%, var(--bg-page) 100%);
+  padding: 4rem 0 3rem;
+  transition: background-color 0.25s ease;
+}
+
+.hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--warco-teal);
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 46ch;
+}
+
+.hero-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.hero-illustration {
+  width: 100%;
+  height: auto;
+}
+
+.hero-stats {
+  margin-top: 3rem;
+}
+
+.stat-card {
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  text-align: center;
+  height: 100%;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--warco-amber);
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  margin-top: 0.35rem;
+}
+
+/* -------------------------------------------------------------------------
+   Section heading helper
+   ------------------------------------------------------------------------- */
+.section-heading {
+  max-width: 68ch;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.section-heading h1,
+.section-heading h2 {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  margin-bottom: 0.6rem;
+}
+
+.section-heading p {
+  color: var(--text-secondary);
+}
+
+.page-section {
+  padding: 3.5rem 0;
+}
+
+.subsection-title {
+  font-family: var(--font-display);
+  color: var(--text-heading);
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+
+/* -------------------------------------------------------------------------
+   Process trail (signature element)
+   ------------------------------------------------------------------------- */
+.process-trail-section {
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+  padding: 4rem 0;
+  transition: background-color 0.25s ease;
+}
+
+.process-trail-section .section-heading p {
+  color: var(--text-inverse-secondary);
+}
+
+.process-trail-section h2 {
+  color: var(--text-inverse);
+}
+
+.trail-wrap {
+  position: relative;
+}
+
+.trail-svg {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 0;
+}
+
+.trail-step {
+  position: relative;
+  z-index: 1;
+  background: rgba(241, 233, 216, 0.06);
+  border: 1px solid var(--border-inverse);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  height: 100%;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.trail-step:hover {
+  background: rgba(241, 233, 216, 0.1);
+  transform: translateY(-3px);
+}
+
+.trail-index {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--warco-amber);
+  margin-bottom: 0.5rem;
+}
+
+.trail-step h3 {
+  color: var(--text-inverse);
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.trail-step p {
+  color: var(--text-inverse-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Service / audience cards
+   ------------------------------------------------------------------------- */
+.home-services-preview,
+.home-training-preview {
+  padding: 4rem 0;
+}
+
+.home-training-preview {
+  background: var(--bg-surface-alt);
+  transition: background-color 0.25s ease;
+}
+
+.service-card,
+.audience-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  height: 100%;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.25s ease;
+}
+
+.service-card:hover,
+.audience-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.service-card h3,
+.audience-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-heading);
+}
+
+.service-card p,
+.audience-card p {
+  color: var(--text-secondary);
+}
+
+.service-card-lg {
+  padding: 2rem;
+}
+
+.trust-note {
+  color: var(--warco-teal);
+  font-weight: 600;
+}
+
+.audience-pill-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.audience-pill {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--warco-forest);
+  color: var(--warco-forest);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* -------------------------------------------------------------------------
+   About page
+   ------------------------------------------------------------------------- */
+.lead-copy {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.mission-card {
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.mission-card h3 {
+  color: var(--warco-amber);
+  margin-bottom: 0.75rem;
+}
+
+.mission-card p {
+  color: var(--text-inverse-secondary);
+}
+
+/* -------------------------------------------------------------------------
+   Training page
+   ------------------------------------------------------------------------- */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--warco-amber);
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------
+   Services callout
+   ------------------------------------------------------------------------- */
+.callout-banner {
+  background: var(--bg-surface-alt);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  text-align: center;
+  transition: background-color 0.25s ease;
+}
+
+.callout-banner p {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--text-heading);
+}
+
+/* -------------------------------------------------------------------------
+   Gallery
+   ------------------------------------------------------------------------- */
+.gallery-tile {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.gallery-tile svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-tile svg rect {
+  fill: var(--bg-surface-alt);
+}
+
+.gallery-note {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-top: 2rem;
+  font-style: italic;
+}
+
+/* -------------------------------------------------------------------------
+   Contact page
+   ------------------------------------------------------------------------- */
+.contact-form-card,
+.quick-contact-card {
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  height: 100%;
+}
+
+.contact-form-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.contact-form-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.form-control,
+.form-select {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.form-control::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border-color: var(--warco-teal);
+  box-shadow: 0 0 0 0.2rem rgba(58, 107, 107, 0.2);
+}
+
+.form-feedback.success {
+  color: var(--warco-forest);
+  font-weight: 600;
+}
+
+.form-feedback.error {
+  color: #d9614a;
+  font-weight: 600;
+}
+
+.quick-contact-card {
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+}
+
+.quick-contact-card h3 {
+  color: var(--text-inverse);
+  margin-bottom: 1.25rem;
+}
+
+.quick-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quick-contact-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-inverse);
+}
+
+.quick-contact-list li:last-child {
+  border-bottom: none;
+}
+
+.quick-contact-list a {
+  color: var(--warco-amber);
+  font-weight: 600;
+}
+
+.qc-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-inverse-secondary);
+}
+
+/* -------------------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------------------- */
+.warco-footer {
+  background: var(--bg-inverse-alt);
+  color: var(--text-inverse);
+  transition: background-color 0.25s ease;
+}
+
+.footer-brand {
+  font-size: 1.4rem;
+  color: var(--text-inverse);
+  margin-bottom: 0.5rem;
+}
+
+.footer-fullname {
+  font-size: 0.9rem;
+  color: var(--text-inverse-secondary);
+  margin-bottom: 0.15rem;
+}
+
+.footer-fullname.kannada {
+  margin-bottom: 1rem;
+}
+
+.footer-tagline {
+  color: var(--text-inverse-secondary);
+  font-size: 0.95rem;
+}
+
+.footer-heading {
+  font-family: var(--font-display);
+  color: var(--text-inverse);
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a,
+.footer-links li {
+  color: var(--text-inverse-secondary);
+  font-size: 0.92rem;
+}
+
+.footer-links a:hover {
+  color: var(--warco-amber);
+}
+
+.footer-rule {
+  border-color: var(--border-inverse);
+  margin: 2rem 0 1.25rem;
+}
+
+.footer-bottom {
+  font-size: 0.85rem;
+  color: var(--text-inverse-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+.footer-credit {
+  font-size: 0.75rem;
+  color: var(--text-inverse-secondary);
+  text-align: center;
+  opacity: 0.75;
+  margin: 0.4rem 0 0;
+}
+
+.footer-credit a {
+  color: var(--text-inverse-secondary);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.25);
+}
+
+.footer-credit a:hover {
+  color: var(--warco-amber);
+}
+
+/* -------------------------------------------------------------------------
+   Dark-mode-only tweaks for native browser chrome
+   ------------------------------------------------------------------------- */
+[data-theme="dark"] .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+[data-theme="dark"] .form-select {
+  color-scheme: dark;
+}
+
+/* -------------------------------------------------------------------------
+   Status badge (live helpline indicator)
+   ------------------------------------------------------------------------- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4caf6d;
+  box-shadow: 0 0 0 rgba(76, 175, 109, 0.6);
+  animation: status-pulse 2s infinite;
+}
+
+@keyframes status-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(76, 175, 109, 0.55); }
+  70% { box-shadow: 0 0 0 6px rgba(76, 175, 109, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(76, 175, 109, 0); }
+}
+
+.status-live-label {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: #4caf6d;
+}
+
+.status-text {
+  color: var(--text-inverse-secondary);
+}
+
+/* -------------------------------------------------------------------------
+   Chat widget
+   ------------------------------------------------------------------------- */
+.chat-widget {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.chat-bubble-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--warco-amber);
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.chat-bubble-btn:hover {
+  transform: scale(1.06);
+}
+
+.chat-bubble-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.chat-panel {
+  width: min(340px, calc(100vw - 2.5rem));
+  max-height: 70vh;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-panel-header {
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.chat-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-inverse);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.chat-panel-body {
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.chat-greeting {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0.85rem;
+}
+
+.chat-quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.chat-quick-reply {
+  border: 1.5px solid var(--warco-teal);
+  color: var(--warco-teal);
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chat-quick-reply:hover {
+  background: var(--warco-teal);
+  color: #fff;
+}
+
+.chat-fallback-note {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0.75rem 0 0;
+  text-align: center;
+}
+
+.chat-fallback-note a {
+  color: var(--warco-amber);
+  font-weight: 600;
+}
+
+.chat-auto-reply {
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+/* -------------------------------------------------------------------------
+   Donate page
+   ------------------------------------------------------------------------- */
+.donate-amount-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.donate-amount-pill {
+  border: 1.5px solid var(--warco-forest);
+  color: var(--warco-forest);
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.5rem 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.donate-amount-pill:hover {
+  background: rgba(47, 93, 58, 0.08);
+}
+
+.donate-amount-pill.active {
+  background: var(--warco-forest);
+  color: #fff;
+}
+
+.text-inverse-note {
+  color: var(--text-inverse-secondary);
+  font-size: 0.92rem;
+}
+
+/* -------------------------------------------------------------------------
+   Location map
+   ------------------------------------------------------------------------- */
+.location-map-section {
+  padding: 3.5rem 0;
+  background: var(--bg-surface-alt);
+  transition: background-color 0.25s ease;
+}
+
+.map-embed-wrap {
+  width: 100%;
+  height: 360px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+/* -------------------------------------------------------------------------
+   Gallery — real uploaded photos
+   ------------------------------------------------------------------------- */
+.gallery-tile-photo {
+  padding: 0;
+}
+
+.gallery-tile-photo img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-caption {
+  padding: 0.75rem 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* -------------------------------------------------------------------------
+   Footer staff login link (discreet)
+   ------------------------------------------------------------------------- */
+.footer-staff-link {
+  color: var(--text-inverse-secondary);
+  text-decoration: underline;
+  opacity: 0.7;
+}
+
+.footer-staff-link:hover {
+  opacity: 1;
+  color: var(--warco-amber);
+}
+
+/* -------------------------------------------------------------------------
+   Admin — login page
+   ------------------------------------------------------------------------- */
+.admin-auth-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface-alt);
+  padding: 2rem 1rem;
+}
+
+.admin-auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.admin-auth-card h1 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.admin-auth-note {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-loading {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+/* -------------------------------------------------------------------------
+   Admin — dashboard
+   ------------------------------------------------------------------------- */
+.admin-dashboard {
+  padding: 2.5rem 0 4rem;
+  min-height: 80vh;
+  background: var(--bg-page);
+}
+
+.admin-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.admin-header h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.25rem;
+}
+
+.admin-header p {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.75rem;
+}
+
+.admin-tab {
+  background: none;
+  border: none;
+  border-bottom: 2.5px solid transparent;
+  padding: 0.65rem 0.25rem;
+  margin-right: 1.25rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.admin-tab.active {
+  color: var(--warco-forest);
+  border-bottom-color: var(--warco-amber);
+}
+
+.admin-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  max-width: 640px;
+}
+
+.admin-form-hint {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  margin-bottom: 1rem;
+}
+
+.admin-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.admin-gallery-item {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--bg-surface-alt);
+  padding-bottom: 0.6rem;
+}
+
+.admin-gallery-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.admin-gallery-item p {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.6rem 0;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.admin-gallery-item .btn {
+  margin: 0.5rem 0.6rem 0;
+}
+
+/* -------------------------------------------------------------------------
+   Small-screen refinements (phones)
+   ------------------------------------------------------------------------- */
+@media (max-width: 576px) {
+  .hero-section {
+    padding: 2.5rem 0 2rem;
+  }
+  .page-section {
+    padding: 2.5rem 0;
+  }
+  .contact-form-card,
+  .quick-contact-card {
+    padding: 1.5rem;
+  }
+  .chat-widget {
+    right: 0.85rem;
+    bottom: 0.85rem;
+  }
+}
+
+/* =========================================================================
+   Awareness — stacked/layered carousel (JioHotstar-style)
+   ========================================================================= */
+.stacked-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 2.5rem 0 1.5rem;
+}
+
+.stacked-carousel-track {
+  position: relative;
+  height: 320px;
+  width: 100%;
+  max-width: 720px;
+}
+
+.stacked-carousel-card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 240px;
+  height: 320px;
+  margin-left: -120px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  background: var(--bg-surface-alt);
+}
+
+.stacked-carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.stacked-carousel-card.active {
+  cursor: default;
+  border: 2px solid var(--warco-amber);
+}
+
+.stacked-carousel-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0.6rem 0.8rem;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.72));
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.stacked-carousel-arrow {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--warco-forest);
+  flex-shrink: 0;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.stacked-carousel-arrow:hover {
+  background: var(--bg-surface-alt);
+}
+
+.stacked-carousel-dots {
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.stacked-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border-subtle);
+  cursor: pointer;
+}
+
+.stacked-carousel-dot.active {
+  background: var(--warco-amber);
+  width: 20px;
+  border-radius: 4px;
+}
+
+@media (max-width: 576px) {
+  .stacked-carousel-card {
+    width: 170px;
+    height: 230px;
+    margin-left: -85px;
+  }
+  .stacked-carousel-track {
+    height: 230px;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Video embed (Awareness / Training)
+   ------------------------------------------------------------------------- */
+.video-embed {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #000;
+}
+
+.video-embed iframe,
+.video-embed video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.translator-note {
+  font-weight: 600;
+  color: var(--warco-amber) !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* -------------------------------------------------------------------------
+   Training — restricted note, image, booking modal
+   ------------------------------------------------------------------------- */
+.training-restricted-note {
+  background: var(--bg-surface-alt);
+  border-left: 4px solid var(--warco-forest);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.training-image {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.training-image img {
+  width: 100%;
+  display: block;
+}
+
+.training-booking-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 30, 21, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.training-booking-modal {
+  position: relative;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-md);
+}
+
+.training-booking-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.9rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+   Research
+   ------------------------------------------------------------------------- */
+.research-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  height: 100%;
+}
+
+.research-card h3 {
+  color: var(--text-heading);
+  margin-bottom: 0.5rem;
+}
+
+.research-card p {
+  color: var(--text-secondary);
+}
+
+.research-link {
+  font-weight: 600;
+  color: var(--warco-teal);
+}
+
+/* -------------------------------------------------------------------------
+   About — team photo, connect-with-us social links
+   ------------------------------------------------------------------------- */
+.about-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.about-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-heading);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.about-social-link:hover {
+  background: var(--warco-teal);
+  border-color: var(--warco-teal);
+  color: #fff;
+}
+
+.footer-social-links {
+  display: flex;
+  gap: 0.9rem;
+  margin-top: 0.9rem;
+}
+
+.footer-social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border-inverse);
+  color: var(--text-inverse-secondary);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.footer-social-links a:hover {
+  background: var(--warco-amber);
+  border-color: var(--warco-amber);
+  color: var(--bg-inverse);
+}
+
+/* -------------------------------------------------------------------------
+   Admin — bookings table & research list
+   ------------------------------------------------------------------------- */
+.admin-section-title {
+  font-size: 1.1rem;
+  color: var(--text-heading);
+  margin-bottom: 1rem;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+
+.admin-table th {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.admin-research-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.admin-research-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+}
+
+.admin-research-item h4 {
+  margin-bottom: 0.25rem;
+  color: var(--text-heading);
+}
